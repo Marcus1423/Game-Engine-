@@ -1,0 +1,11 @@
+# Visual Studio
+.vs/
+*.vcxproj.user
+
+# Build
+Debug/
+Release/
+x64/
+
+# DLL
+SDL3.dll
