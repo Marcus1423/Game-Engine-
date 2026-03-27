@@ -1,10 +1,9 @@
 #include "GameScene.h"
 #include <SDL3/SDL.h>
-#include "GameObject.h"
 
 void GameScene::init(SDL_Renderer* renderer) {
     GameObject* player = new GameObject(300, 200, 100, 100);
-    player->loadTexture(renderer, "player4.png");
+    player->loadTexture(renderer, "player.png");
 
     objects.push_back(player);
 
@@ -47,33 +46,10 @@ void GameScene::handleInput(const bool* keystate, float deltaTime) {
     float oldX = player->x;
     float oldY = player->y;
 
-    bool moving = false;
-
-    if (keystate[SDL_SCANCODE_W]) {
-        player->y -= 300 * deltaTime;
-        moving = true;
-    }
-    if (keystate[SDL_SCANCODE_S]) {
-        player->y += 300 * deltaTime;
-        moving = true;
-    }
-    if (keystate[SDL_SCANCODE_A]) {
-        player->x -= 300 * deltaTime;
-        player->flip = true;
-        moving = true;
-    }
-    if (keystate[SDL_SCANCODE_D]) {
-        player->x += 300 * deltaTime;
-        player->flip = false;
-        moving = true;
-    }
-
-    if (moving) {
-        player->setState(AnimState::RUN);
-    }
-    else {
-        player->setState(AnimState::IDLE);
-    }
+    if (keystate[SDL_SCANCODE_W]) player->y -= 500 * deltaTime;
+    if (keystate[SDL_SCANCODE_S]) player->y += 500 * deltaTime;
+    if (keystate[SDL_SCANCODE_A]) player->x -= 500 * deltaTime;
+    if (keystate[SDL_SCANCODE_D]) player->x += 500 * deltaTime;
 
     for (auto obj : objects) {
         if (obj != player && player->checkCollision(obj)) {

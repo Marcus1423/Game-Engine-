@@ -3,10 +3,6 @@
 #include <SDL3_image/SDL_image.h>
 #include <string>
 
-enum class AnimState {
-    IDLE,
-    RUN
-};
 
 class GameObject {
 public:
@@ -21,26 +17,6 @@ public:
     bool checkCollision(GameObject* other) const;
     bool loadTexture(SDL_Renderer* renderer, const std::string& path);
 
-    void setState(AnimState newState);
-
-    bool flip = false;
-
 private:
     SDL_Texture* texture = nullptr;
-
-    AnimState currentState = AnimState::IDLE;
-
-    int frame = 0;
-    float frameTime = 0.1f;
-    float currentTime = 0.0f;
-
-    int frameCount = 1;
-    int frameWidth = 64;
-    int frameHeight = 64;
-    int startX = 0;
-
-    
-
-    SDL_FRect srcRect;
 };
-
